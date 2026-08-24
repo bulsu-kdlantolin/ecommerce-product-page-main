@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Figtree:ital,wght@0,300..900;1,300..900&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Karla:ital,wght@0,200..800;1,200..800&family=Kumbh+Sans:wght,YOPQ@100..900,300&family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Overpass:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Work+Sans:ital,wght@0,100..900;1,100..900&family=Young+Serif&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+
+  <title>Frontend Mentor | E-commerce product page</title>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <div>
+        <img src="./images/icon-menu.svg" alt="">
+        <img src="./images/logo.svg" alt="">
+      </div>
+      <div>
+        <img src="./images/icon-cart.svg" alt="">
+        <img src="./images/image-avatar.png">
+      </div>
+    </nav>
+    <div class="sidebar">
+      <ul>
+        <img src="./images/icon-close.svg" alt="">
+        <li><a href="#collections">Collections</a></li>
+        <li><a href="#men">Men</a></li>
+        <li><a href="#women">Women</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <div class="main-container">
+      <div class="image-container">
+        <img src="./images/image-product-1-thumbnail.jpg" alt="">
+        <button>
+          <img src="./images/icon-previous.svg">
+        </button>
+        <button>
+          <img src="./images/icon-next.svg" alt="">
+        </button>
+      </div>
+    </div>
+
+    <div class="details-container">
+      <span>Sneaker Company</span>
+      <h1>Fall Limited Edition Sneakers</h1>
+      <p>These low-profile sneakers are your perfect casual wear companion. Featuring a 
+      durable rubber outer sole, they’ll withstand everything the weather can offer.</p>
+      <div class="price-container">
+        <span>$125.00</span>
+        <span>50%</span>
+        <span>$250.00</span>
+      </div>
+      <div class="add-to-cart">
+        <div class="quantity">
+          <img src="./images/icon-minus.svg" alt="">
+          <span>0</span>
+          <img src="./images/icon-plus.svg" alt="">
+        </div>
+        <button id="add-to-cart-button">Add to cart</button>
+      </div>
+    </div>
+  </main>
+  <footer class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
+    Coded by <a href="https://github.com/bulsu-kdlantolin">Kian Davey Antolin</a>.
+  </footer>
+</body>
+</html>
