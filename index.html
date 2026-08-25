@@ -15,17 +15,21 @@
 <body>
 
   <header>
-    <nav>
-      <div>
-        <img src="./images/icon-menu.svg" alt="">
+    <nav class="navbar">
+      <div class="sidebar-logo-container">
+        <button class="sidebar-button">
+          <img src="./images/icon-menu.svg" class="" alt="">
+        </button>
         <img src="./images/logo.svg" alt="">
       </div>
-      <div>
-        <img src="./images/icon-cart.svg" alt="">
-        <img src="./images/image-avatar.png">
+      <div class="cart-profile-container">
+        <button class="cart-button">
+          <img src="./images/icon-cart.svg" alt="">
+        </button>
+        <img src="./images/image-avatar.png" alt="">
       </div>
     </nav>
-    <div class="sidebar">
+    <div class="sidebar" hidden>
       <ul>
         <img src="./images/icon-close.svg" alt="">
         <li><a href="#collections">Collections</a></li>
@@ -41,33 +45,42 @@
     <div class="main-container">
       <div class="image-container">
         <img src="./images/image-product-1-thumbnail.jpg" alt="">
-        <button>
+        <button class="prev-button">
           <img src="./images/icon-previous.svg">
         </button>
-        <button>
+        <button class="next-button">
           <img src="./images/icon-next.svg" alt="">
         </button>
       </div>
-    </div>
 
-    <div class="details-container">
+      <div class="details-container">
       <span>Sneaker Company</span>
       <h1>Fall Limited Edition Sneakers</h1>
       <p>These low-profile sneakers are your perfect casual wear companion. Featuring a 
       durable rubber outer sole, they’ll withstand everything the weather can offer.</p>
       <div class="price-container">
-        <span>$125.00</span>
-        <span>50%</span>
-        <span>$250.00</span>
-      </div>
-      <div class="add-to-cart">
-        <div class="quantity">
-          <img src="./images/icon-minus.svg" alt="">
-          <span>0</span>
-          <img src="./images/icon-plus.svg" alt="">
+        <div class="price-discount">
+          <span>$125.00</span>
+          <span>50%</span>
         </div>
-        <button id="add-to-cart-button">Add to cart</button>
+        <span class="original-price">$250.00</span>
       </div>
+
+      <div class="quantity-container">
+          <button class="minus-button">
+            <img src="./images/icon-minus.svg" alt="">
+          </button>
+          <span>0</span>
+          <button class="plus-button">
+            <img src="./images/icon-plus.svg" alt="">
+          </button>
+      </div>
+
+      <button class="add-to-cart-button">
+        <img src="./images/icon-cart.svg" alt="">
+        Add to cart
+      </button>
+    </div>
     </div>
   </main>
   <footer class="attribution">
