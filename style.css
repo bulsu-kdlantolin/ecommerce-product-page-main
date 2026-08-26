@@ -37,6 +37,7 @@ body {
         .sidebar-button {
             border: none;
             background-color: var(--White);
+            margin-top: 5px;
         }
 
         .sidebar-button:hover {
@@ -71,28 +72,88 @@ body {
     }
 }
 
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 250px;
+    height: 100vh;
+    background-color: var(--White);
+
+    img {
+        position: relative;
+        top: 20px;
+        left: 20px;
+    }
+
+    ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    li {
+        position: relative;
+        top: 50px;
+        left: -10px;
+    }
+
+    a {
+        text-decoration: none;
+        color: var(--Black);
+        font-weight: 700;
+        font-size: 1.1rem;
+    }
+}
+
 .main-container {
 
     .image-container {
         position: relative;
-        z-index: 0;
+        z-index: -1;
+        height: 300px;
+        overflow: hidden;
 
         img:nth-child(1) {
             width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         .prev-button {
+            width: 35px;
+            height: 35px;
+            padding: 0;
+
             display: flex;
             justify-content: center;
+            align-items: center;
+
             position: absolute;
             left: 15px;
             top: 50%;
+            transform: translateY(-50%);
 
             border: none;
             background-color: var(--White);
             border-radius: 50%;
-            padding: 10px;
             z-index: 1;
+
+            img {
+                width: 10px;
+                height: 15px;
+                margin-right: 3px;
+            }
         }
 
         .prev-button:hover {
@@ -100,18 +161,29 @@ body {
         }
 
         .next-button {
+            width: 35px;
+            height: 35px;
+            padding: 0;
+
             display: flex;
             justify-content: center;
             align-items: center;
-            right: 15px;
-            top: 50%;
 
             position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+
             border: none;
             background-color: var(--White);
             border-radius: 50%;
-            padding: 10px;
             z-index: 1;
+
+            img {
+                width: 10px;
+                height: 15px;
+                margin-left: 3px;
+            }
         }
 
         .next-button:hover {

@@ -29,9 +29,12 @@
         <img src="./images/image-avatar.png" alt="">
       </div>
     </nav>
+
+    <div class="" id="overlay"></div>
+
     <div class="sidebar" hidden>
+      <img src="./images/icon-close.svg" alt="">
       <ul>
-        <img src="./images/icon-close.svg" alt="">
         <li><a href="#collections">Collections</a></li>
         <li><a href="#men">Men</a></li>
         <li><a href="#women">Women</a></li>
@@ -41,10 +44,32 @@
     </div>
   </header>
 
+  <div class="cart-popup">
+    <h2>Cart</h2>
+    <hr>
+    <div class="cart-filled">
+      <div class="cart-content">
+        <img src="./images/image-product-1-thumbnail.jpg" alt="">
+        <div class="product-details">
+          <span>Fall Limited Edition Sneakers</span>
+          <div class="price-quantity">
+            <span>$125.00 x 3</span>
+            <span>$375.00</span>
+          </div>
+        </div>
+        <img src="./images/icon-delete.svg">
+      </div>
+    </div>
+    <div class="cart-empty">
+      <span>Your cart is empty.</span>
+    </div>
+    <button class="checkout-button">Checkout</button>
+  </div>
+
   <main>
     <div class="main-container">
       <div class="image-container">
-        <img src="./images/image-product-1-thumbnail.jpg" alt="">
+        <img src="./images/image-product-1.jpg" alt="">
         <button class="prev-button">
           <img src="./images/icon-previous.svg">
         </button>
