@@ -91,7 +91,7 @@ body {
 
 .overlay {
     position: fixed;
-    z-index: 2;
+    z-index: 3;
     inset: 0;
     background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(5px);
@@ -150,6 +150,7 @@ body {
     top: 80px;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 2;
 
     width: calc(100% - 20px);
     margin: 0;
@@ -257,7 +258,6 @@ body {
 
     .image-container {
         position: relative;
-        z-index: -1;
         height: 300px;
         overflow: hidden;
 
