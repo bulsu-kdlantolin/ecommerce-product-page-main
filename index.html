@@ -23,7 +23,7 @@
         <img src="./images/logo.svg" alt="">
       </div>
       <div class="cart-profile-container">
-        <div class="number-items">1</div>
+        <div class="number-items hidden" id="number-items-cart">1</div>
         <button class="cart-button" id="cart-button">
           <img src="./images/icon-cart.svg" alt="">
         </button>
@@ -50,23 +50,25 @@
   <div class="cart-popup hidden" id="cart-popup">
     <h2>Cart</h2>
     <hr>
-    <div class="cart-filled hidden">
+    <div class="cart-filled hidden" id="cart-filled">
       <div class="cart-content">
         <img src="./images/image-product-1-thumbnail.jpg" alt="">
         <div class="product-details">
           <span class="name">Fall Limited Edition Sneakers</span>
           <div class="price-quantity">
-            <span class="price">$125.00 x 3</span>
-            <span class="total-price">$375.00</span>
+            <span class="price" id="price">$125.00</span> 
+            <span class="x">x</span> 
+            <span class="item-amount" id="item-amount">1</span>
+            <span class="total-price" id="total-price">125.00</span>
           </div>
         </div>
-        <button class="delete-button">
+        <button class="delete-button" id="delete-button">
           <img src="./images/icon-delete.svg" alt="">
         </button>
       </div>
       <button class="checkout-button">Checkout</button>
     </div>
-    <div class="cart-empty">
+    <div class="cart-empty" id="cart-empty">
       <span>Your cart is empty.</span>
     </div>
   </div>
@@ -74,11 +76,11 @@
   <main>
     <div class="main-container">
       <div class="image-container">
-        <img src="./images/image-product-1.jpg" alt="">
-        <button class="prev-button">
+        <img src="./images/image-product-1.jpg" id="product-image" alt="">
+        <button class="prev-button" id="prev-button">
           <img src="./images/icon-previous.svg">
         </button>
-        <button class="next-button">
+        <button class="next-button" id="next-button">
           <img src="./images/icon-next.svg" alt="">
         </button>
       </div>
@@ -97,16 +99,16 @@
       </div>
 
       <div class="quantity-container">
-          <button class="minus-button">
+          <button class="minus-button" id="minus-button">
             <img src="./images/icon-minus.svg" alt="">
           </button>
-          <span>0</span>
-          <button class="plus-button">
+          <span class="amount" id="amount">0</span>
+          <button class="plus-button" id="plus-button">
             <img src="./images/icon-plus.svg" alt="">
           </button>
       </div>
 
-      <button class="add-to-cart-button">
+      <button class="add-to-cart-button" id="add-to-cart-button">
         <img src="./images/icon-cart.svg" alt="">
         Add to cart
       </button>

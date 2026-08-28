@@ -81,7 +81,7 @@ body {
             height: 30px;
         }
 
-        .avatar {
+        .avatar:hover {
             border: 2px solid var(--Orange);
             border-radius: 50%;
             cursor: pointer;
@@ -141,7 +141,7 @@ body {
     }
 }
 
-.sidebar.hidden {
+.sidebar.open {
     transform: translateX(0);
 }
 
@@ -199,6 +199,14 @@ body {
             .price-quantity .total-price {
                 font-weight: 700;
             }
+            
+            .x {
+                color: var(--Dark-grayish-blue);
+            }
+
+            .item-amount {
+                color: var(--Dark-grayish-blue);
+            }
         }
 
         .checkout-button {
@@ -248,10 +256,18 @@ body {
             font-weight: 700;
         }
     }
+
+    .cart-empty.hidden {
+        display: none;
+    }
 }
 
 .cart-popup.hidden {
     display: none;
+}
+
+.hidden {
+  display: none;
 }
 
 .main-container {
