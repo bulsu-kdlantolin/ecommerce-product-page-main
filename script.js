@@ -1,6 +1,6 @@
 const sidebarBtn = document.getElementById("sidebar-button");
 const sidebar = document.getElementById("sidebar");
-const overlayBlur = document.getElementById("overlay");
+const overlay = document.getElementById("overlay");
 const closeBtn = document.getElementById("close-button");
 const cartBtn = document.getElementById("cart-button");
 const cartPopup = document.getElementById("cart-popup");
@@ -17,12 +17,20 @@ const priceSpan = document.getElementById("price");
 const totalPriceSpan = document.getElementById("total-price");
 const prevBtn = document.getElementById("prev-button");
 const nextBtn = document.getElementById("next-button");
+const mainImageBtn = document.getElementById("main-image-btn");
 const productImage = document.getElementById("product-image");
+const thumbnails = document.querySelectorAll(".thumbnail");
+const lightboxModal = document.getElementById("lightbox-modal");
+const lightboxClose = document.getElementById("lightbox-close");
+const lightboxImage = document.getElementById("lightbox-image");
+const lightboxPrev = document.getElementById("lightbox-prev");
+const lightboxNext = document.getElementById("lightbox-next");
+const lightboxThumbs = document.querySelectorAll(".lightbox-thumb");
 
-let itemAmount = Number(amountSpan.textContent);
+let itemAmount = 0;
 let currentItemAmount = 0;
-let price = Number(priceSpan.textContent.replace("$", ""));
-let totalPrice = Number(totalPriceSpan.textContent);
+const price = 125.00;
+let totalPrice = 125.00;
 
 const images = [
     "./images/image-product-1.jpg",
@@ -32,40 +40,91 @@ const images = [
 ];
 let currentImage = 0;
 
-sidebarBtn.addEventListener("click", () => {
-    sidebar.classList.toggle("open");
-    overlayBlur.classList.toggle("overlay");
+// Nav links active state
+const navLinks = document.querySelectorAll(".sidebar a");
+navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+        navLinks.forEach((l) => {
+            l.classList.remove("active");
+            l.removeAttribute("aria-current");
+        });
+        link.classList.add("active");
+        link.setAttribute("aria-current", "page");
+    });
 });
 
-closeBtn.addEventListener("click", () => {
-    sidebar.classList.toggle("open");
-    overlayBlur.classList.toggle("overlay");
+// Sidebar Navigation
+function openSidebar() {
+    sidebar.classList.add("open");
+    overlay.classList.add("show");
+    sidebarBtn.setAttribute("aria-expanded", "true");
+    closeBtn.focus();
+}
+
+function closeSidebar() {
+    sidebar.classList.remove("open");
+    overlay.classList.remove("show");
+    sidebarBtn.setAttribute("aria-expanded", "false");
+    sidebarBtn.focus();
+}
+
+sidebarBtn?.addEventListener("click", openSidebar);
+closeBtn?.addEventListener("click", closeSidebar);
+overlay?.addEventListener("click", () => {
+    if (sidebar.classList.contains("open")) closeSidebar();
 });
 
+// Cart Popup Toggle
 cartBtn.addEventListener("click", () => {
-    cartPopup.classList.toggle("hidden");
+    const isHidden = cartPopup.classList.toggle("hidden");
+    cartBtn.setAttribute("aria-expanded", String(!isHidden));
 });
+
+// Close open dropdowns/modals on Escape
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+        if (!lightboxModal.classList.contains("hidden")) {
+            closeLightbox();
+        } else if (sidebar.classList.contains("open")) {
+            closeSidebar();
+        } else if (!cartPopup.classList.contains("hidden")) {
+            cartPopup.classList.add("hidden");
+            cartBtn.setAttribute("aria-expanded", "false");
+        }
+    }
+});
+
+// Mobile Slider Controls
+function updateMainImage(index) {
+    currentImage = index;
+    productImage.src = images[currentImage];
+    thumbnails.forEach((t, i) => {
+        const isActive = i === currentImage;
+        t.classList.toggle("active", isActive);
+        t.setAttribute("aria-current", String(isActive));
+    });
+}
 
 prevBtn.addEventListener("click", () => {
-    if(currentImage <= 0) {
-        currentImage = 3;
-    } else {
-        currentImage -= 1;
-    }
-    productImage.src = images[currentImage];
+    const newIndex = (currentImage <= 0) ? images.length - 1 : currentImage - 1;
+    updateMainImage(newIndex);
 });
 
 nextBtn.addEventListener("click", () => {
-    if(currentImage >= 3) {
-        currentImage = 0;
-    } else {
-        currentImage += 1;
-    }
-    productImage.src = images[currentImage];
+    const newIndex = (currentImage >= images.length - 1) ? 0 : currentImage + 1;
+    updateMainImage(newIndex);
 });
 
+// Desktop Main Thumbnails Selector
+thumbnails.forEach((thumbnail, index) => {
+    thumbnail.addEventListener("click", () => {
+        updateMainImage(index);
+    });
+});
+
+// Quantity Counter
 minusButton.addEventListener("click", () => {
-    if(itemAmount >= 1) {
+    if (itemAmount > 0) {
         itemAmount -= 1;
         amountSpan.textContent = itemAmount;
     }
@@ -76,10 +135,10 @@ addButton.addEventListener("click", () => {
     amountSpan.textContent = itemAmount;
 });
 
+// Add to Cart Logic
 addToCartBtn.addEventListener("click", () => {
-    currentItemAmount += itemAmount;
-    
-    if(itemAmount >= 1) {
+    if (itemAmount >= 1) {
+        currentItemAmount += itemAmount;
         numberItemsCart.textContent = currentItemAmount;
         itemAmountSpan.textContent = currentItemAmount;
 
@@ -89,26 +148,78 @@ addToCartBtn.addEventListener("click", () => {
         numberItemsCart.classList.remove("hidden");
         cartEmptyDiv.classList.add("hidden");
         cartFilledDiv.classList.remove("hidden");
+
+        itemAmount = 0;
+        amountSpan.textContent = "0";
     }
-
-    amountSpan.textContent = "0";
-    itemAmount = 0;
 });
 
+// Delete Item from Cart
 deleteBtn.addEventListener("click", () => {
-    if(currentItemAmount >= 1) {
-        currentItemAmount -= 1;
-
-        numberItemsCart.textContent = currentItemAmount;
-        itemAmountSpan.textContent = currentItemAmount;
-
-        totalPrice = price * currentItemAmount;
-        totalPriceSpan.textContent = `$${totalPrice.toFixed(2)}`;
-
-        if(currentItemAmount === 0) {
-            numberItemsCart.classList.add("hidden");
-            cartEmptyDiv.classList.remove("hidden");
-            cartFilledDiv.classList.add("hidden");
-        }
-    } 
+    currentItemAmount = 0;
+    numberItemsCart.textContent = "0";
+    numberItemsCart.classList.add("hidden");
+    cartFilledDiv.classList.add("hidden");
+    cartEmptyDiv.classList.remove("hidden");
 });
+
+// Lightbox Modal Controls
+function openLightbox() {
+    if (window.innerWidth >= 768) {
+        lightboxImage.src = images[currentImage];
+        updateLightboxThumbs(currentImage);
+        lightboxModal.classList.remove("hidden");
+        lightboxClose.focus();
+    }
+}
+
+function closeLightbox() {
+    lightboxModal.classList.add("hidden");
+    mainImageBtn.focus();
+}
+
+mainImageBtn.addEventListener("click", openLightbox);
+lightboxClose.addEventListener("click", closeLightbox);
+
+lightboxModal.addEventListener("click", (e) => {
+    if (e.target === lightboxModal) {
+        closeLightbox();
+    }
+});
+
+lightboxPrev.addEventListener("click", () => {
+    currentImage = (currentImage <= 0) ? images.length - 1 : currentImage - 1;
+    updateLightboxGallery();
+});
+
+lightboxNext.addEventListener("click", () => {
+    currentImage = (currentImage >= images.length - 1) ? 0 : currentImage + 1;
+    updateLightboxGallery();
+});
+
+lightboxThumbs.forEach((thumb, index) => {
+    thumb.addEventListener("click", () => {
+        currentImage = index;
+        updateLightboxGallery();
+    });
+});
+
+function updateLightboxGallery() {
+    lightboxImage.src = images[currentImage];
+    productImage.src = images[currentImage];
+    updateLightboxThumbs(currentImage);
+    
+    thumbnails.forEach((t, i) => {
+        const isActive = i === currentImage;
+        t.classList.toggle("active", isActive);
+        t.setAttribute("aria-current", String(isActive));
+    });
+}
+
+function updateLightboxThumbs(index) {
+    lightboxThumbs.forEach((t, i) => {
+        const isActive = i === index;
+        t.classList.toggle("active", isActive);
+        t.setAttribute("aria-current", String(isActive));
+    });
+}

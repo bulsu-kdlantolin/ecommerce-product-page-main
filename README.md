@@ -124,3 +124,40 @@ Describe how you used AI tools (if any) during this project. This helps demonstr
 This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
 
 **Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
+
+```js
+function updateLightboxGallery() {
+  lightboxImage.src = images[currentImage];
+  productImage.src = images[currentImage];
+  updateLightboxThumbs(currentImage);
+
+  thumbnails.forEach((t, i) => {
+    const isActive = i === currentImage;
+    t.classList.toggle("active", isActive);
+    t.setAttribute("aria-current", String(isActive));
+  });
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    if (!lightboxModal.classList.contains("hidden")) {
+      closeLightbox();
+    } else if (sidebar.classList.contains("open")) {
+      closeSidebar();
+    } else if (!cartPopup.classList.contains("hidden")) {
+      cartPopup.classList.add("hidden");
+      cartBtn.setAttribute("aria-expanded", "false");
+    }
+  }
+});
+```
+### Continued development
+For future e-commerce projects, I plan to integrate persistent local storage (localStorage) to maintain cart state across page reloads and build out smooth sliding transitions for lightbox image changes.
+
+### AI Collaboration
+Tools Used: Gemini
+
+Usage Strategy: Assisted in auditing accessibility standards (replacing <div> thumbnail wrappers with semantic <button> elements, synchronizing aria-expanded and aria-current), fixing overlay toggle regressions, and sizing lightbox arrow buttons to match design specifications.
+
+## Author
+Frontend Mentor - @bulsu-kdlantolin
